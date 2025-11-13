@@ -20,7 +20,7 @@ def load_model():
 model, tokenizer = load_model()
 
 # Streamlit UI
-st.title("📝 T5 Fine-Tuned Text Summarizer")
+st.title(" T5 Fine-Tuned Text Summarizer")
 st.write("Paste any article or long text below and get a concise summary using our fine-tuned T5 model.")
 
 user_input = st.text_area("Enter your text here:", height=200, 
@@ -35,7 +35,7 @@ with col2:
     min_len = st.slider("Minimum summary length", min_value=20, max_value=100, value=30)
 
 # Add some info
-with st.expander("ℹ️ About this model"):
+with st.expander("ℹ About this model"):
     st.write("""
     This model is a fine-tuned version of **T5-small** trained on the CNN/DailyMail dataset.
     - **Base Model**: T5-small
@@ -44,14 +44,14 @@ with st.expander("ℹ️ About this model"):
     - **Input Format**: The model automatically adds 'summarize: ' prefix
     """)
 
-if st.button("🚀 Generate Summary", type="primary"):
+if st.button(" Generate Summary", type="primary"):
     if not user_input.strip():
         st.warning("⚠️ Please enter some text to summarize.")
     elif model is None or tokenizer is None:
-        st.error("❌ Model failed to load. Please check the console for errors.")
+        st.error(" Model failed to load. Please check the console for errors.")
     else:
         try:
-            with st.spinner("🤖 Generating summary... This may take a few seconds."):
+            with st.spinner(" Generating summary... This may take a few seconds."):
                 # Prepare input for T5 (add the 'summarize: ' prefix)
                 input_text = "summarize: " + user_input
                 
@@ -99,5 +99,5 @@ if st.button("🚀 Generate Summary", type="primary"):
                 st.metric("Compression Ratio", f"{len(summary_text)/len(user_input)*100:.1f}%")
 
         except Exception as e:
-            st.error(f"❌ Error during summarization: {str(e)}")
+            st.error(f" Error during summarization: {str(e)}")
 
